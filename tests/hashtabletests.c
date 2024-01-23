@@ -1,7 +1,5 @@
-#include "vec.h"
 #include <criterion/criterion.h>
 #include <notstd.h>
-#include <stdio.h>
 
 static void cf(void *ptr) {}
 

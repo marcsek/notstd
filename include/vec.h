@@ -12,6 +12,6 @@ size_t vec_get_size(vec *v);
 void vec_destroy(vec *v);
 
 // For debugging...
-void vec_print(vec *v);
+void dbg_print_vec(vec *v);
 
 #endif

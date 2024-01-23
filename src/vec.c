@@ -1,4 +1,3 @@
-#include "vec.h"
 #include <notstd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,7 +19,7 @@ void vec_check_size_and_grow(vec *v) {
 }
 
 vec *vec_create(size_t init_capacity) {
-  vec *v = (vec *)malloc(sizeof(vec *));
+  vec *v = (vec *)malloc(sizeof(vec));
   vec_value *data = (vec_value *)malloc(init_capacity * sizeof(vec_value));
 
   v->data = data;
@@ -59,7 +58,7 @@ void vec_destroy(vec *v) {
   free(v);
 }
 
-void vec_print(vec *v) {
+void dbg_print_vec(vec *v) {
   for (size_t i = 0; i < v->size; i++) {
     printf("%s, ", (char *)v->data[i]);
   }

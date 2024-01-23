@@ -1,5 +1,5 @@
-#include "vec.h"
 #include <criterion/criterion.h>
+#include <notstd.h>
 
 struct _vec {
   vec_value *data;
