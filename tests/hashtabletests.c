@@ -1,5 +1,7 @@
+#include "vec.h"
 #include <criterion/criterion.h>
 #include <notstd.h>
+#include <stdio.h>
 
 static void cf(void *ptr) {}
 
@@ -112,4 +114,27 @@ Test(hashtabletest, delete) {
   cr_expect(r1 == val1, "Deleted value is correct.");
   cr_expect(r2 == val2, "Deleted value is correct.");
   cr_expect(r3 == val3, "Deleted value is correct.");
+}
+
+Test(hashtabletest, values) {
+  hash_table *ht = hash_table_create(32, &hash_func, &cf);
+
+  char *key1 = "A";
+  char *val1 = "VA";
+  char *key2 = "B";
+  char *val2 = "VB";
+  char *key3 = "AA";
+  char *val3 = "VAA";
+
+  hash_table_set(ht, key1, val1);
+  hash_table_set(ht, key2, val2);
+  hash_table_set(ht, key3, val3);
+
+  vec *v = hash_table_values(ht);
+  hash_table_value *data = (hash_table_value *)vec_get_data(v);
+
+  cr_expect(data[0] == val1, "Data is set correctly");
+  cr_expect(data[1] == val2, "Data is set correctly");
+  cr_expect(data[2] == val3, "Data is set correctly");
+  cr_expect(vec_get_size(v) == 3, "Size is correct");
 }

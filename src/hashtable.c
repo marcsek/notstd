@@ -1,3 +1,5 @@
+#include "linked_list.h"
+#include "vec.h"
 #include <notstd.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -49,12 +51,13 @@ bool hash_table_set(hash_table *ht, const char *key, void *data) {
 
   entry *ent = malloc(sizeof(entry));
   ent->value = data;
-  ent->key = strndup(key, MAX_KEY_SIZE);
+  ent->key = strndup(key, NSTD_HT_MAX_KEY_SIZE);
 
   if (ll != NULL) {
     list_node *cur_node = ll->head;
     while (cur_node != NULL) {
-      if (strncmp(((entry *)cur_node->value)->key, key, MAX_KEY_SIZE) == 0) {
+      if (strncmp(((entry *)cur_node->value)->key, key, NSTD_HT_MAX_KEY_SIZE) ==
+          0) {
         entry *to_delete = linked_list_remove(ll, cur_node);
         free(to_delete->key);
         ht->cf(to_delete->value);
@@ -84,12 +87,33 @@ hash_table_value hash_table_get(hash_table *ht, const char *key) {
   list_node *cur_node = ll->head;
   while (cur_node != NULL) {
     entry *ent = cur_node->value;
-    if (strncmp(key, ent->key, MAX_KEY_SIZE) == 0) {
+    if (strncmp(key, ent->key, NSTD_HT_MAX_KEY_SIZE) == 0) {
       return ent->value;
     }
     cur_node = cur_node->next;
   }
   return NULL;
+}
+
+vec *hash_table_values(hash_table *ht) {
+  if (ht == NULL)
+    return NULL;
+
+  vec *v = vec_create(ht->size);
+
+  for (size_t i = 0; i < ht->size; i++) {
+    linked_list *ll = ht->data[i];
+    if (ll == NULL)
+      continue;
+
+    list_node *cur_node = ll->head;
+    while (cur_node != NULL) {
+      entry *ent = cur_node->value;
+      vec_push_back(v, ent->value);
+      cur_node = cur_node->next;
+    }
+  }
+  return v;
 }
 
 hash_table_value hash_table_delete(hash_table *ht, const char *key) {
@@ -105,7 +129,7 @@ hash_table_value hash_table_delete(hash_table *ht, const char *key) {
   list_node *cur_node = ll->head;
   while (cur_node != NULL) {
     entry *ent = cur_node->value;
-    if (strncmp(key, ent->key, MAX_KEY_SIZE) == 0) {
+    if (strncmp(key, ent->key, NSTD_HT_MAX_KEY_SIZE) == 0) {
       hash_table_value to_return = ent->value;
       free(ent->key);
       free(linked_list_remove(ll, cur_node));

@@ -2,4 +2,5 @@
 #define NOTSTD_H
 #include "hashtable.h"
 #include "linked_list.h"
+#include "vec.h"
 #endif

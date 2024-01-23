@@ -11,9 +11,11 @@ message(STATUS "Processing " ${PROJECT_NAME})
 set(SrcLib
   include/hashtable.h
   include/linked_list.h
+  include/vec.h
 
   src/hashtable.c
   src/linked_list.c
+  src/vec.c
 )
 
 set(SrcMain
@@ -23,6 +25,7 @@ set(SrcMain
 set(SrcTest
   tests/hashtabletests.c
   tests/linkedlisttests.c
+  tests/vectests.c
 )
 
 option(NOTSTD_MAKE_EXE "Make an executable" FALSE)
