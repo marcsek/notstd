@@ -1,6 +1,4 @@
-#include "hashtable.h"
-#include "linked_list.h"
-
+#include <notstd.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>

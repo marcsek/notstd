@@ -1,8 +1,7 @@
-#include "../src/hashtable.h"
-#include "../src/linked_list.h"
 #include <criterion/criterion.h>
+#include <notstd.h>
 
-void cf(void *ptr) {}
+static void cf(void *ptr) {}
 
 typedef struct entry {
   char *key;

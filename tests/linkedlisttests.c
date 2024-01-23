@@ -1,8 +1,7 @@
 #include <criterion/criterion.h>
+#include <notstd.h>
 
-#include "../src/linked_list.h"
-
-void cf(void *ptr) {}
+static void cf(void *ptr) {}
 
 Test(linkedlisttest, create) {
   linked_list *ll = linked_list_create_h("A", cf);

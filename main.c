@@ -1,4 +1,4 @@
-#include "./src/hashtable.h"
+#include <notstd.h>
 #include <stdio.h>
 #include <string.h>
 
