@@ -1,5 +1,5 @@
 #include "linked_list.h"
-#include "vec.h"
+#include "vector.h"
 #include <notstd.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -95,11 +95,11 @@ hash_table_value hash_table_get(hash_table *ht, const char *key) {
   return NULL;
 }
 
-vec *hash_table_values(hash_table *ht) {
+vector *hash_table_values(hash_table *ht) {
   if (ht == NULL)
     return NULL;
 
-  vec *v = vec_create(ht->size);
+  vector *v = vector_create(ht->size);
 
   for (size_t i = 0; i < ht->size; i++) {
     linked_list *ll = ht->data[i];
@@ -109,7 +109,7 @@ vec *hash_table_values(hash_table *ht) {
     list_node *cur_node = ll->head;
     while (cur_node != NULL) {
       entry *ent = cur_node->value;
-      vec_push_back(v, ent->value);
+      vector_push_back(v, ent->value);
       cur_node = cur_node->next;
     }
   }

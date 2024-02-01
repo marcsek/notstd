@@ -128,11 +128,11 @@ Test(hashtabletest, values) {
   hash_table_set(ht, key2, val2);
   hash_table_set(ht, key3, val3);
 
-  vec *v = hash_table_values(ht);
-  hash_table_value *data = (hash_table_value *)vec_get_data(v);
+  vector *v = hash_table_values(ht);
+  hash_table_value *data = (hash_table_value *)vector_get_data(v);
 
   cr_expect(data[0] == val1, "Data is set correctly");
   cr_expect(data[1] == val2, "Data is set correctly");
   cr_expect(data[2] == val3, "Data is set correctly");
-  cr_expect(vec_get_size(v) == 3, "Size is correct");
+  cr_expect(vector_get_size(v) == 3, "Size is correct");
 }

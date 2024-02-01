@@ -2,25 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct _vec {
-  vec_value *data;
+struct _vector {
+  vector_value *data;
   size_t capacity;
   size_t size;
 };
 
-void vec_check_size_and_grow(vec *v) {
+void vector_check_size_and_grow(vector *v) {
   if (v == NULL)
     return;
 
   if (v->size + 1 >= v->capacity) {
-    v->data = realloc(v->data, v->capacity * sizeof(vec_value) * 2);
+    v->data = realloc(v->data, v->capacity * sizeof(vector_value) * 2);
     v->capacity *= 2;
   }
 }
 
-vec *vec_create(size_t init_capacity) {
-  vec *v = (vec *)malloc(sizeof(vec));
-  vec_value *data = (vec_value *)malloc(init_capacity * sizeof(vec_value));
+vector *vector_create(size_t init_capacity) {
+  vector *v = (vector *)malloc(sizeof(vector));
+  vector_value *data =
+      (vector_value *)malloc(init_capacity * sizeof(vector_value));
 
   v->data = data;
   v->size = 0;
@@ -29,36 +30,36 @@ vec *vec_create(size_t init_capacity) {
   return v;
 }
 
-void vec_push_back(vec *v, vec_value value) {
+void vector_push_back(vector *v, vector_value value) {
   if (v == NULL || value == NULL || v->capacity == 0)
     return;
 
-  vec_check_size_and_grow(v);
+  vector_check_size_and_grow(v);
 
   v->data[v->size] = value;
   v->size++;
 }
 
-vec_value *vec_get_data(vec *v) {
+vector_value *vector_get_data(vector *v) {
   if (v == NULL)
     return NULL;
 
   return v->data;
 }
 
-size_t vec_get_size(vec *v) {
+size_t vector_get_size(vector *v) {
   if (v == NULL)
     return 0;
 
   return v->size;
 }
 
-void vec_destroy(vec *v) {
+void vector_destroy(vector *v) {
   free(v->data);
   free(v);
 }
 
-void dbg_print_vec(vec *v) {
+void dbg_print_vector(vector *v) {
   for (size_t i = 0; i < v->size; i++) {
     printf("%s, ", (char *)v->data[i]);
   }

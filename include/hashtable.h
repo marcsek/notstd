@@ -3,10 +3,8 @@
 
 #define NSTD_HT_MAX_KEY_SIZE 256
 
-#include "vec.h"
+#include "vector.h"
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 typedef void *hash_table_value;
 
@@ -19,7 +17,7 @@ hash_table *hash_table_create(size_t size, hash_function *hf,
 bool hash_table_set(hash_table *ht, const char *key, void *data);
 hash_table_value hash_table_get(hash_table *ht, const char *key);
 hash_table_value hash_table_delete(hash_table *ht, const char *key);
-vec *hash_table_values(hash_table *ht);
+vector *hash_table_values(hash_table *ht);
 void hash_table_destroy(hash_table *ht);
 
 // For debugging...
