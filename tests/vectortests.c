@@ -1,3 +1,4 @@
+#include "vector.h"
 #include <criterion/criterion.h>
 #include <notstd.h>
 

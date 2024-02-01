@@ -6,6 +6,7 @@ struct _vector {
   vector_value *data;
   size_t capacity;
   size_t size;
+  cleanup_function *cf;
 };
 
 void vector_check_size_and_grow(vector *v) {
@@ -18,7 +19,12 @@ void vector_check_size_and_grow(vector *v) {
   }
 }
 
+void empty_cleanup(void *ptr) {}
 vector *vector_create(size_t init_capacity) {
+  return vector_create_cf(init_capacity, empty_cleanup);
+}
+
+vector *vector_create_cf(size_t init_capacity, cleanup_function *cf) {
   vector *v = (vector *)malloc(sizeof(vector));
   vector_value *data =
       (vector_value *)malloc(init_capacity * sizeof(vector_value));
@@ -26,6 +32,7 @@ vector *vector_create(size_t init_capacity) {
   v->data = data;
   v->size = 0;
   v->capacity = init_capacity;
+  v->cf = cf == NULL ? free : cf;
 
   return v;
 }
@@ -55,7 +62,11 @@ size_t vector_get_size(vector *v) {
 }
 
 void vector_destroy(vector *v) {
+  for (size_t i = 0; i < v->size; i++) {
+    v->cf(v->data[i]);
+  }
   free(v->data);
+
   free(v);
 }
 
