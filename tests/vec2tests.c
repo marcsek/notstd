@@ -40,6 +40,14 @@ Test(vec2tests, multiply) {
   cr_expect(v2.y == 1.0f, "Second y parameter is correct.");
 }
 
+Test(vec2tests, multiply_scalar) {
+  vec2 v1 = (vec2){.x = 5.0f, .y = 3.0f};
+  vec2_mult_s(&v1, 2.0f);
+
+  cr_expect(v1.x == 10.0f, "Added x parameter is correct.");
+  cr_expect(v1.y == 6.0f, "Added y parameter is correct.");
+}
+
 Test(vec2tests, substract) {
   vec2 v1 = (vec2){.x = 5.0f, .y = 3.0f};
   vec2 v2 = (vec2){.x = 2.0f, .y = 1.0f};
