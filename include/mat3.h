@@ -10,6 +10,7 @@ typedef struct {
 vec3 mat3_mult_vec3(const mat3 *m, const vec3 *v);
 mat3 mat3_mult_mat3(const mat3 *lhsm, const mat3 *rhsm);
 mat3 mat3_scale(float factor);
+mat3 mat3_scale_ind(float x, float y);
 mat3 mat3_identity();
 mat3 mat3_flipY();
 mat3 mat3_rotation(float theta);

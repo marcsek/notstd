@@ -39,6 +39,21 @@ mat3 mat3_scale(float factor) {
                     1.0f,
                 }};
 }
+
+mat3 mat3_scale_ind(float x, float y) {
+  return (mat3){.matrix = {
+                    x,
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    y,
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    1.0f,
+                }};
+}
+
 mat3 mat3_identity() { return mat3_scale(1.0f); }
 
 mat3 mat3_flipY() {
