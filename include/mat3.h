@@ -13,7 +13,9 @@ mat3 mat3_scale(float factor);
 mat3 mat3_scale_ind(float x, float y);
 mat3 mat3_identity();
 mat3 mat3_flipY();
-mat3 mat3_rotation(float theta);
+mat3 mat3_rotationZ(float theta);
+mat3 mat3_rotationY(float theta);
+mat3 mat3_rotationX(float theta);
 mat3 mat3_translation(const vec2 *v);
 
 #endif

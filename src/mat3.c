@@ -61,7 +61,7 @@ mat3 mat3_flipY() {
       .matrix = {1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f}};
 }
 
-mat3 mat3_rotation(float theta) {
+mat3 mat3_rotationZ(float theta) {
   const float cost = cosf(theta);
   const float sint = sinf(theta);
 
@@ -75,6 +75,40 @@ mat3 mat3_rotation(float theta) {
                     0.0f,
                     0.0f,
                     1.0f,
+                }};
+}
+
+mat3 mat3_rotationY(float theta) {
+  const float cost = cosf(theta);
+  const float sint = sinf(theta);
+
+  return (mat3){.matrix = {
+                    cost,
+                    0.0f,
+                    -sint,
+                    0.0f,
+                    1.0f,
+                    0.0f,
+                    sint,
+                    0.0f,
+                    cost,
+                }};
+}
+
+mat3 mat3_rotationX(float theta) {
+  const float cost = cosf(theta);
+  const float sint = sinf(theta);
+
+  return (mat3){.matrix = {
+                    1.0f,
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    cost,
+                    sint,
+                    0.0f,
+                    -sint,
+                    cost,
                 }};
 }
 

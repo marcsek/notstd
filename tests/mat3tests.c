@@ -48,9 +48,9 @@ Test(mat3tests, flipY) {
                    "Initial row3 is correct.");
 }
 
-Test(mat3tests, rotation) {
+Test(mat3tests, rotationZ) {
   float theta = 0.5f;
-  mat3 m = mat3_rotation(theta);
+  mat3 m = mat3_rotationZ(theta);
 
   float r1[3] = {cosf(theta), -sinf(theta), 0.0f};
   float r2[3] = {sinf(theta), cosf(theta), 0.0f};
