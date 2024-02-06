@@ -93,3 +93,23 @@ Test(vec3tests, divide_right) {
   cr_expect(v2.y == 1.0f, "Second y parameter is correct.");
   cr_expect(v2.z == 6.0f, "Second z parameter is correct.");
 }
+
+Test(vec3tests, dot_product) {
+  vec3 v1 = (vec3){.x = 1.0f, .y = 2.0f, .z = 3.0f};
+  vec3 v2 = (vec3){.x = 1.0f, .y = 5.0f, .z = 7.0f};
+
+  float r = vec3_dot_prod(&v1, &v2);
+
+  cr_expect(r == 32.0f, "Dot product is correct.");
+}
+
+Test(vec3tests, cross_product) {
+  vec3 v1 = (vec3){.x = 1.0f, .y = 2.0f, .z = 3.0f};
+  vec3 v2 = (vec3){.x = 1.0f, .y = 5.0f, .z = 7.0f};
+
+  vec3 r = vec3_cross_prod(&v1, &v2);
+
+  cr_expect(r.x == -1.0f, "Cross prod. x parameter is correct.");
+  cr_expect(r.y == -4.0f, "Cross prod. y parameter is correct.");
+  cr_expect(r.z == 3.0f, "Cross prod. z parameter is correct.");
+}
