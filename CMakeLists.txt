@@ -15,6 +15,7 @@ set(SrcLib
   include/vec2.h
   include/vec3.h
   include/mat3.h
+  include/essentials.h
 
   src/hashtable.c
   src/linked_list.c
@@ -22,6 +23,7 @@ set(SrcLib
   src/vec2.c
   src/vec3.c
   src/mat3.c
+  src/essentials.c
 )
 
 set(SrcMain
