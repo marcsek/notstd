@@ -38,6 +38,12 @@ void vec3_div(vec3 *v1, const vec3 *v2) {
   v1->z /= v2->z;
 }
 
+void vec3_div_s(vec3 *v1, float scalar) {
+  v1->x /= scalar;
+  v1->y /= scalar;
+  v1->z /= scalar;
+}
+
 void vec3_divr(vec3 *v1, const vec3 *v2) {
   v1->x = v2->x / v1->x;
   v1->y = v2->y / v1->y;
@@ -56,7 +62,7 @@ vec3 vec3_cross_prod(const vec3 *v1, const vec3 *v2) {
   };
 }
 
-vec3 vec3_interpolate_to(vec3 *v, const vec3 *dest, float aplha) {
+vec3 vec3_interpolate_to(const vec3 *v, const vec3 *dest, float aplha) {
   vec3 res = vec3_copy(dest);
   vec3_subs(&res, v);
   vec3_mult_s(&res, aplha);

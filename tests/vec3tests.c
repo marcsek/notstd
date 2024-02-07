@@ -81,6 +81,19 @@ Test(vec3tests, divide) {
   cr_expect(v2.z == 6.0f, "Second z parameter is correct.");
 }
 
+Test(vec3tests, divide_scalar) {
+  vec3 v1 = (vec3){.x = 5.0f, .y = 3.0f, .z = 2.0f};
+  vec3 v2 = (vec3){.x = 2.0f, .y = 1.0f, .z = 6.0f};
+  vec3_div_s(&v1, 2.0f);
+
+  cr_expect(v1.x == 5.0f / 2.0f, "Divided x parameter is correct.");
+  cr_expect(v1.y == 3.0f / 2.0f, "Divided y parameter is correct.");
+  cr_expect(v1.z == 2.0f / 2.0f, "Divided z parameter is correct.");
+  cr_expect(v2.x == 2.0f, "Second x parameter is correct.");
+  cr_expect(v2.y == 1.0f, "Second y parameter is correct.");
+  cr_expect(v2.z == 6.0f, "Second z parameter is correct.");
+}
+
 Test(vec3tests, divide_right) {
   vec3 v1 = (vec3){.x = 5.0f, .y = 3.0f, .z = 2.0f};
   vec3 v2 = (vec3){.x = 2.0f, .y = 1.0f, .z = 6.0f};

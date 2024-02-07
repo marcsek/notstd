@@ -70,6 +70,17 @@ Test(vec2tests, divide) {
   cr_expect(v2.y == 1.0f, "Second y parameter is correct.");
 }
 
+Test(vec2tests, divide_scalar) {
+  vec2 v1 = (vec2){.x = 5.0f, .y = 3.0f};
+  vec2 v2 = (vec2){.x = 2.0f, .y = 1.0f};
+  vec2_div_s(&v1, 2.0f);
+
+  cr_expect(v1.x == 5.0f / 2.0f, "Divided x parameter is correct.");
+  cr_expect(v1.y == 3.0f / 2.0f, "Divided y parameter is correct.");
+  cr_expect(v2.x == 2.0f, "Second x parameter is correct.");
+  cr_expect(v2.y == 1.0f, "Second y parameter is correct.");
+}
+
 Test(vec2tests, divide_right) {
   vec2 v1 = (vec2){.x = 5.0f, .y = 3.0f};
   vec2 v2 = (vec2){.x = 2.0f, .y = 1.0f};
