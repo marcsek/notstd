@@ -1,6 +1,7 @@
 #ifndef NOTSTD_H
 #define NOTSTD_H
 
+#include "essentials.h"
 #include "hashtable.h"
 #include "linked_list.h"
 #include "mat3.h"
