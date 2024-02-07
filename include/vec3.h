@@ -17,5 +17,6 @@ void vec3_div(vec3 *v1, const vec3 *v2);
 void vec3_divr(vec3 *v1, const vec3 *v2);
 float vec3_dot_prod(const vec3 *v1, const vec3 *v2);
 vec3 vec3_cross_prod(const vec3 *v1, const vec3 *v2);
+vec3 vec3_interpolate_to(vec3 *v, const vec3 *dest, float aplha);
 
 #endif

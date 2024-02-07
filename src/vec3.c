@@ -55,3 +55,11 @@ vec3 vec3_cross_prod(const vec3 *v1, const vec3 *v2) {
       .z = v1->x * v2->y - v1->y * v2->x,
   };
 }
+
+vec3 vec3_interpolate_to(vec3 *v, const vec3 *dest, float aplha) {
+  vec3 res = vec3_copy(dest);
+  vec3_subs(&res, v);
+  vec3_mult_s(&res, aplha);
+  vec3_add(&res, v);
+  return res;
+}

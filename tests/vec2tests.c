@@ -80,3 +80,22 @@ Test(vec2tests, divide_right) {
   cr_expect(v2.x == 2.0f, "Second x parameter is correct.");
   cr_expect(v2.y == 1.0f, "Second y parameter is correct.");
 }
+
+Test(vec2tests, dot_product) {
+  vec2 v1 = (vec2){.x = 1.0f, .y = 2.0f};
+  vec2 v2 = (vec2){.x = 1.0f, .y = 5.0f};
+
+  float r = vec2_dot_prod(&v1, &v2);
+
+  cr_expect(r == 11.0f, "Dot product is correct.");
+}
+
+Test(vec2tests, interpolation) {
+  vec2 v1 = (vec2){.x = 1.0f, .y = 2.0f};
+  vec2 v2 = (vec2){.x = 3.0f, .y = 4.0f};
+
+  vec2 r = vec2_interpolate_to(&v1, &v2, 0.5f);
+
+  cr_expect(r.x == 2.0f, "Interpolated x parameter is correct.");
+  cr_expect(r.y == 3.0f, "Interpolated y parameter is correct.");
+}

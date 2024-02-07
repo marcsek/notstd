@@ -46,3 +46,15 @@ void vec2_rotate(vec2 *v, float angle) {
   v->y = v->x * sin_theta + v->y * cos_theta;
   v->x = new_x;
 }
+
+float vec2_dot_prod(const vec2 *v1, const vec2 *v2) {
+  return v1->x * v2->x + v1->y * v2->y;
+}
+
+vec2 vec2_interpolate_to(vec2 *v, const vec2 *dest, float aplha) {
+  vec2 res = vec2_copy(dest);
+  vec2_subs(&res, v);
+  vec2_mult_s(&res, aplha);
+  vec2_add(&res, v);
+  return res;
+}
