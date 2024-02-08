@@ -47,14 +47,14 @@ void vector_push_back(vector *v, vector_value value) {
   v->size++;
 }
 
-vector_value *vector_get_data(vector *v) {
+vector_value *vector_get_data(const vector *v) {
   if (v == NULL)
     return NULL;
 
   return v->data;
 }
 
-size_t vector_get_size(vector *v) {
+size_t vector_get_size(const vector *v) {
   if (v == NULL)
     return 0;
 
