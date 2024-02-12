@@ -40,8 +40,11 @@ set(SrcTest
 )
 
 option(NOTSTD_MAKE_EXE "Make an executable" FALSE)
+option(NOTSTD_SET_DEBUG_FLAGS "Set debug flags" FALSE)
 
-set (CMAKE_C_FLAGS "-Werror -Wextra -Wall -fsanitize=undefined,address")
+if(NOTSTD_SET_DEBUG_FLAGS)
+  set (CMAKE_C_FLAGS "-Werror -Wextra -Wall -fsanitize=undefined,address")
+endif()
 
 add_library(notstd STATIC
     ${SrcLib}
