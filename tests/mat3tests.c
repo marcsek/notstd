@@ -66,15 +66,9 @@ Test(mat3tests, rotationZ) {
 
 Test(mat3tests, multiply_vec3) {
   mat3 m = (mat3){.matrix = {
-                      2.0f,
-                      3.0f,
-                      4.0f,
-                      6.0f,
-                      7.0f,
-                      3.0f,
-                      2.0f,
-                      1.0f,
-                      5.0f,
+                      {2.0f, 3.0f, 4.0f},
+                      {6.0f, 7.0f, 3.0f},
+                      {2.0f, 1.0f, 5.0f},
                   }};
   vec3 r = mat3_mult_vec3(&m, &(vec3){3.0f, 2.0f, 4.0f});
   cr_expect(r.x == 28.0f, "Vec3 x component is correct.");
@@ -84,26 +78,14 @@ Test(mat3tests, multiply_vec3) {
 
 Test(mat3tests, multiply_mat3) {
   mat3 m = (mat3){.matrix = {
-                      2.0f,
-                      3.0f,
-                      4.0f,
-                      6.0f,
-                      7.0f,
-                      3.0f,
-                      2.0f,
-                      1.0f,
-                      5.0f,
+                      {2.0f, 3.0f, 4.0f},
+                      {6.0f, 7.0f, 3.0f},
+                      {2.0f, 1.0f, 5.0f},
                   }};
   mat3 r = mat3_mult_mat3(&m, &(mat3){.matrix = {
-                                          3.0f,
-                                          9.0f,
-                                          2.0f,
-                                          4.0f,
-                                          5.0f,
-                                          8.0f,
-                                          2.0f,
-                                          1.0f,
-                                          4.0f,
+                                          {3.0f, 9.0f, 2.0f},
+                                          {4.0f, 5.0f, 8.0f},
+                                          {2.0f, 1.0f, 4.0f},
                                       }});
 
   float r1[3] = {26.0f, 37.0f, 44.0f};

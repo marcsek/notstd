@@ -41,6 +41,8 @@ set(SrcTest
 
 option(NOTSTD_MAKE_EXE "Make an executable" FALSE)
 
+set (CMAKE_C_FLAGS "-Werror -Wextra -Wall -fsanitize=undefined,address")
+
 add_library(notstd STATIC
     ${SrcLib}
 )

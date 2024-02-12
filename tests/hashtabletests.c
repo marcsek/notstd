@@ -1,7 +1,8 @@
+#include "essentials.h"
 #include <criterion/criterion.h>
 #include <notstd.h>
 
-static void cf(void *ptr) {}
+static void cf(void *ptr) { UNUSED(ptr); }
 
 typedef struct entry {
   char *key;
@@ -15,7 +16,10 @@ struct _hash_table {
   cleanup_function *cf;
 };
 
-size_t hash_func(const char *key, size_t size) { return strlen(key); }
+size_t hash_func(const char *key, size_t size) {
+  UNUSED(size);
+  return strlen(key);
+}
 
 Test(hashtabletest, create) {
   hash_table *ht = hash_table_create(32, &hash_func, &cf);

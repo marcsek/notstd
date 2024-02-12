@@ -131,10 +131,10 @@ list_value linked_list_remove(linked_list *ll, list_node *node) {
 }
 
 list_value linked_list_idx(linked_list *ll, int idx) {
-  if (ll == NULL || idx >= ll->size)
+  if (ll == NULL || idx >= (int)ll->size)
     return NULL;
 
-  size_t cur_idx = 0;
+  int cur_idx = 0;
   list_node *cur_node = ll->head;
   while (cur_node != NULL && cur_idx <= idx) {
     if (cur_idx == idx) {

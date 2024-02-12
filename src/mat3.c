@@ -28,29 +28,17 @@ mat3 mat3_mult_mat3(const mat3 *lhsm, const mat3 *rhsm) {
 
 mat3 mat3_scale(float factor) {
   return (mat3){.matrix = {
-                    factor,
-                    0.0f,
-                    0.0f,
-                    0.0f,
-                    factor,
-                    0.0f,
-                    0.0f,
-                    0.0f,
-                    1.0f,
+                    {factor, 0.0f, 0.0f},
+                    {0.0f, factor, 0.0f},
+                    {0.0f, 0.0f, 1.0f},
                 }};
 }
 
 mat3 mat3_scale_ind(float x, float y) {
   return (mat3){.matrix = {
-                    x,
-                    0.0f,
-                    0.0f,
-                    0.0f,
-                    y,
-                    0.0f,
-                    0.0f,
-                    0.0f,
-                    1.0f,
+                    {x, 0.0f, 0.0f},
+                    {0.0f, y, 0.0f},
+                    {0.0f, 0.0f, 1.0f},
                 }};
 }
 
@@ -58,7 +46,7 @@ mat3 mat3_identity() { return mat3_scale(1.0f); }
 
 mat3 mat3_flipY() {
   return (mat3){
-      .matrix = {1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f}};
+      .matrix = {{1.0f, 0.0f, 0.0f}, {0.0f, -1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}}};
 }
 
 mat3 mat3_rotationZ(float theta) {
@@ -66,15 +54,9 @@ mat3 mat3_rotationZ(float theta) {
   const float sint = sinf(theta);
 
   return (mat3){.matrix = {
-                    cost,
-                    -sint,
-                    0.0f,
-                    sint,
-                    cost,
-                    0.0f,
-                    0.0f,
-                    0.0f,
-                    1.0f,
+                    {cost, -sint, 0.0f},
+                    {sint, cost, 0.0f},
+                    {0.0f, 0.0f, 1.0f},
                 }};
 }
 
@@ -83,15 +65,9 @@ mat3 mat3_rotationY(float theta) {
   const float sint = sinf(theta);
 
   return (mat3){.matrix = {
-                    cost,
-                    0.0f,
-                    -sint,
-                    0.0f,
-                    1.0f,
-                    0.0f,
-                    sint,
-                    0.0f,
-                    cost,
+                    {cost, 0.0f, -sint},
+                    {0.0f, 1.0f, 0.0f},
+                    {sint, 0.0f, cost},
                 }};
 }
 
@@ -100,28 +76,16 @@ mat3 mat3_rotationX(float theta) {
   const float sint = sinf(theta);
 
   return (mat3){.matrix = {
-                    1.0f,
-                    0.0f,
-                    0.0f,
-                    0.0f,
-                    cost,
-                    sint,
-                    0.0f,
-                    -sint,
-                    cost,
+                    {1.0f, 0.0f, 0.0f},
+                    {0.0f, cost, sint},
+                    {0.0f, -sint, cost},
                 }};
 }
 
 mat3 mat3_translation(const vec2 *v) {
   return (mat3){.matrix = {
-                    1.0f,
-                    0.0f,
-                    v->x,
-                    0.0f,
-                    1.0f,
-                    v->y,
-                    0.0f,
-                    0.0f,
-                    1.0f,
+                    {1.0f, 0.0f, v->x},
+                    {0.0f, 1.0f, v->y},
+                    {0.0f, 0.0f, 1.0f},
                 }};
 }

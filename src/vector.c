@@ -1,3 +1,4 @@
+#include "essentials.h"
 #include <notstd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +20,8 @@ void vector_check_size_and_grow(vector *v) {
   }
 }
 
-void empty_cleanup(void *ptr) {}
+void empty_cleanup(void *p) { UNUSED(p); }
+
 vector *vector_create(size_t init_capacity) {
   return vector_create_cf(init_capacity, empty_cleanup);
 }

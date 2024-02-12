@@ -1,7 +1,8 @@
+#include "essentials.h"
 #include <criterion/criterion.h>
 #include <notstd.h>
 
-static void cf(void *ptr) {}
+static void cf(void *ptr) { UNUSED(ptr); }
 
 Test(linkedlisttest, create) {
   linked_list *ll = linked_list_create_h("A", cf);

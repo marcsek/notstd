@@ -1,6 +1,8 @@
 #ifndef NSTD_ESSENTIALS_H
 #define NSTD_ESSENTIALS_H
 
+#define UNUSED(x) (void)(x)
+
 #define PI 3.141592653589793
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
