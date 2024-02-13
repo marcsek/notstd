@@ -147,3 +147,22 @@ Test(vec3tests, saturate) {
   cr_expect(r.y == 1.0f, "Saturated y parameter is correct.");
   cr_expect(r.z == 0.0f, "Saturated z parameter is correct.");
 }
+
+Test(vec3tests, length) {
+  vec3 v1 = (vec3){.x = 3.0f, .y = 4.0f, .z = 0.0f};
+
+  float r = vec3_length(&v1);
+
+  cr_expect(r == 5.0f, "Length is correct.");
+}
+
+Test(vec3tests, normalized) {
+  vec3 v1 = (vec3){.x = 3.0f, .y = 4.0f, .z = 0.0f};
+
+  float l = vec3_length(&v1);
+  vec3 r = vec3_normalized(&v1);
+
+  cr_expect(r.x == 3.0f / l, "Normalized x parameter is correct.");
+  cr_expect(r.y == 4.0f / l, "Normalized y parameter is correct.");
+  cr_expect(r.z == 0.0f / l, "Normalized z parameter is correct.");
+}

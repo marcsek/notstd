@@ -1,5 +1,6 @@
 #include "vec3.h"
 #include "essentials.h"
+#include <math.h>
 
 vec3 vec3_copy(const vec3 *v) {
   return (vec3){
@@ -51,6 +52,10 @@ void vec3_divr(vec3 *v1, const vec3 *v2) {
   v1->z = v2->z / v1->z;
 }
 
+float vec3_length(const vec3 *v) {
+  return sqrtf(powf(v->x, 2) + powf(v->y, 2) + powf(v->z, 2));
+}
+
 float vec3_dot_prod(const vec3 *v1, const vec3 *v2) {
   return v1->x * v2->x + v1->y * v2->y + v1->z * v2->z;
 }
@@ -76,5 +81,15 @@ vec3 vec3_saturate(const vec3 *v) {
       .x = MIN(1.0f, MAX(0.0f, v->x)),
       .y = MIN(1.0f, MAX(0.0f, v->y)),
       .z = MIN(1.0f, MAX(0.0f, v->z)),
+  };
+}
+
+vec3 vec3_normalized(const vec3 *v) {
+  const float length = vec3_length(v);
+
+  return (vec3){
+      .x = v->x / length,
+      .y = v->y / length,
+      .z = v->z / length,
   };
 }
