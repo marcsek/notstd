@@ -126,6 +126,7 @@ Test(vec3tests, cross_product) {
   cr_expect(r.y == -4.0f, "Cross prod. y parameter is correct.");
   cr_expect(r.z == 3.0f, "Cross prod. z parameter is correct.");
 }
+
 Test(vec3tests, interpolation) {
   vec3 v1 = (vec3){.x = 1.0f, .y = 2.0f, .z = 3.0f};
   vec3 v2 = (vec3){.x = 2.0f, .y = 5.0f, .z = 7.0f};
@@ -135,4 +136,14 @@ Test(vec3tests, interpolation) {
   cr_expect(r.x == 1.5f, "Interpolated x parameter is correct.");
   cr_expect(r.y == 3.5f, "Interpolated y parameter is correct.");
   cr_expect(r.z == 5.0f, "Interpolated z parameter is correct.");
+}
+
+Test(vec3tests, saturate) {
+  vec3 v1 = (vec3){.x = 1.0f, .y = 2.0f, .z = -3.0f};
+
+  vec3 r = vec3_saturate(&v1);
+
+  cr_expect(r.x == 1.0f, "Saturated x parameter is correct.");
+  cr_expect(r.y == 1.0f, "Saturated y parameter is correct.");
+  cr_expect(r.z == 0.0f, "Saturated z parameter is correct.");
 }

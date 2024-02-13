@@ -1,4 +1,5 @@
 #include "vec3.h"
+#include "essentials.h"
 
 vec3 vec3_copy(const vec3 *v) {
   return (vec3){
@@ -68,4 +69,12 @@ vec3 vec3_interpolate_to(const vec3 *v, const vec3 *dest, float aplha) {
   vec3_mult_s(&res, aplha);
   vec3_add(&res, v);
   return res;
+}
+
+vec3 vec3_saturate(const vec3 *v) {
+  return (vec3){
+      .x = MIN(1.0f, MAX(0.0f, v->x)),
+      .y = MIN(1.0f, MAX(0.0f, v->y)),
+      .z = MIN(1.0f, MAX(0.0f, v->z)),
+  };
 }
