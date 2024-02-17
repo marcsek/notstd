@@ -14,7 +14,9 @@ set(SrcLib
   include/vector.h
   include/vec2.h
   include/vec3.h
+  include/vec4.h
   include/mat3.h
+  include/mat4.h
   include/essentials.h
 
   src/hashtable.c
@@ -22,7 +24,9 @@ set(SrcLib
   src/vector.c
   src/vec2.c
   src/vec3.c
+  src/vec4.c
   src/mat3.c
+  src/mat4.c
   src/essentials.c
 )
 
@@ -36,7 +40,9 @@ set(SrcTest
   tests/vectortests.c
   tests/vec2tests.c
   tests/vec3tests.c
+  tests/vec4tests.c
   tests/mat3tests.c
+  tests/mat4tests.c
 )
 
 option(NOTSTD_MAKE_EXE "Make an executable" FALSE)
