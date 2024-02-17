@@ -85,9 +85,9 @@ mat4 mat4_rotationX(float theta) {
 
 mat4 mat4_translation(const vec3 *v) {
   return (mat4){.matrix = {
-                    {1.0f, 0.0f, 0.0f, 0.0f},
-                    {0.0f, 1.0f, 0.0f, 0.0f},
-                    {0.0f, 0.0f, 1.0f, 0.0f},
-                    {v->x, v->y, v->z, 1.0f},
+                    {1.0f, 0.0f, 0.0f, v->x},
+                    {0.0f, 1.0f, 0.0f, v->y},
+                    {0.0f, 0.0f, 1.0f, v->z},
+                    {0.0f, 0.0f, 0.0f, 1.0f},
                 }};
 }
