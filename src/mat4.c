@@ -91,3 +91,12 @@ mat4 mat4_translation(const vec3 *v) {
                     {0.0f, 0.0f, 0.0f, 1.0f},
                 }};
 }
+
+mat4 mat4_projection(float w, float h, float n, float f) {
+  return (mat4){.matrix = {
+                    {2.0f * n / w, 0.0f, 0.0f, 0.0f},
+                    {0.0f, 2.0f * n / h, 0.0f, 0.0f},
+                    {0.0f, 0.0f, f / (f - n), 1.0f},
+                    {0.0f, 0.0f, -n * f / (f - n), 0.0f},
+                }};
+}

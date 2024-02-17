@@ -16,5 +16,6 @@ mat4 mat4_rotationZ(float theta);
 mat4 mat4_rotationY(float theta);
 mat4 mat4_rotationX(float theta);
 mat4 mat4_translation(const vec3 *v);
+mat4 mat4_projection(float w, float h, float n, float f);
 
 #endif
