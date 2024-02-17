@@ -58,6 +58,21 @@ Test(mat4tests, rotationZ) {
                    "Initial row4 is correct.");
 }
 
+Test(mat4tests, multiply_vec4) {
+  mat4 m = (mat4){.matrix = {
+                      {2.0f, 3.0f, 4.0f, 5.0f},
+                      {6.0f, 7.0f, 3.0f, 0.0f},
+                      {2.0f, 1.0f, 5.0f, 8.0f},
+                      {8.0f, 3.0f, 2.0f, 1.0f},
+                  }};
+
+  vec4 r = mat4_mult_vec4(&m, &(vec4){3.0f, 9.0f, 2.0f, 1.0f});
+  cr_expect(r.x == 46.0f, "Vec4 x component is correct.");
+  cr_expect(r.y == 87.0f, "Vec4 y component is correct.");
+  cr_expect(r.z == 33.0f, "Vec4 z component is correct.");
+  cr_expect(r.w == 56.0f, "Vec4 w component is correct.");
+}
+
 Test(mat4tests, multiply_mat4) {
   mat4 m = (mat4){.matrix = {
                       {2.0f, 3.0f, 4.0f, 5.0f},
