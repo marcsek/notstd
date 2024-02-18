@@ -1,16 +1,17 @@
 #include "mat4.h"
+#include "essentials.h"
 #include <math.h>
 
 vec4 mat4_mult_vec4(const mat4 *m, const vec4 *v) {
   vec4 out = {0};
-  out.x = m->matrix[0][0] * v->x + m->matrix[0][1] * v->y +
-          m->matrix[0][2] * v->z + m->matrix[0][3] * v->w;
-  out.y = m->matrix[1][0] * v->x + m->matrix[1][1] * v->y +
-          m->matrix[1][2] * v->z + m->matrix[1][3] * v->w;
-  out.z = m->matrix[2][0] * v->x + m->matrix[2][1] * v->y +
-          m->matrix[2][2] * v->z + m->matrix[2][3] * v->w;
-  out.w = m->matrix[3][0] * v->x + m->matrix[3][1] * v->y +
-          m->matrix[3][2] * v->z + m->matrix[3][3] * v->w;
+  out.x = m->matrix[0][0] * v->x + m->matrix[1][0] * v->y +
+          m->matrix[2][0] * v->z + m->matrix[3][0] * v->w;
+  out.y = m->matrix[0][1] * v->x + m->matrix[1][1] * v->y +
+          m->matrix[2][1] * v->z + m->matrix[3][1] * v->w;
+  out.z = m->matrix[0][2] * v->x + m->matrix[1][2] * v->y +
+          m->matrix[2][2] * v->z + m->matrix[3][2] * v->w;
+  out.w = m->matrix[0][3] * v->x + m->matrix[1][3] * v->y +
+          m->matrix[2][3] * v->z + m->matrix[3][3] * v->w;
 
   return out;
 }
@@ -85,17 +86,21 @@ mat4 mat4_rotationX(float theta) {
 
 mat4 mat4_translation(const vec3 *v) {
   return (mat4){.matrix = {
-                    {1.0f, 0.0f, 0.0f, v->x},
-                    {0.0f, 1.0f, 0.0f, v->y},
-                    {0.0f, 0.0f, 1.0f, v->z},
-                    {0.0f, 0.0f, 0.0f, 1.0f},
+                    {1.0f, 0.0f, 0.0f, 0.0f},
+                    {0.0f, 1.0f, 0.0f, 0.0f},
+                    {0.0f, 0.0f, 1.0f, 0.0f},
+                    {v->x, v->y, v->z, 1.0f},
                 }};
 }
 
-mat4 mat4_projection(float w, float h, float n, float f) {
+mat4 mat4_projection(float fov, float ar, float n, float f) {
+  const float fov_rad = fov * PI / 180.0f;
+  const float w = 1.0f / tanf(fov_rad / 2.0f);
+  const float h = w * ar;
+
   return (mat4){.matrix = {
-                    {2.0f * n / w, 0.0f, 0.0f, 0.0f},
-                    {0.0f, 2.0f * n / h, 0.0f, 0.0f},
+                    {w, 0.0f, 0.0f, 0.0f},
+                    {0.0f, h, 0.0f, 0.0f},
                     {0.0f, 0.0f, f / (f - n), 1.0f},
                     {0.0f, 0.0f, -n * f / (f - n), 0.0f},
                 }};
