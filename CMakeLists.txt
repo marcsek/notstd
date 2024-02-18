@@ -47,6 +47,7 @@ set(SrcTest
 
 option(NOTSTD_MAKE_EXE "Make an executable" FALSE)
 option(NOTSTD_SET_DEBUG_FLAGS "Set debug flags" FALSE)
+option(NOTSTD_CREATE_TESTS "Create tests" FALSE)
 
 if(NOTSTD_SET_DEBUG_FLAGS)
   set (CMAKE_C_FLAGS "-Werror -Wextra -Wall -fsanitize=undefined,address")
@@ -75,13 +76,15 @@ if(NOTSTD_MAKE_EXE)
   )
 endif()
 
-add_executable(test
-  ${SrcTest}
-)
-
-target_link_libraries(test PRIVATE
-  "-lcriterion"
-)
+if(NOTSTD_SET_DEBUG_FLAGS)
+  add_executable(test
+    ${SrcTest}
+  )
+  
+  target_link_libraries(test PRIVATE
+    "-lcriterion"
+  )
+endif()
 
 
 message(STATUS "Done " ${PROJECT_NAME})
